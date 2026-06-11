@@ -38,7 +38,7 @@ export const protect = asyncHandler( async (req,res,next)=>{
  else{
     return res.status(401).json({
         success:false,
-        message:"Not Authorised"
+        message:"Not Authorized"
     })
  }
 })
