@@ -22,3 +22,22 @@ export const sendMessageController = asyncHandler(async (req,res) => {
             text
         });
 })
+
+export const getAllMessageController = asyncHandler(async (req,res) => {
+    const otherUserId = req.params.id
+
+    const messages = await messageModel.find({
+        $or:[{
+            sender:req.user._id,
+            reciever:otherUserId
+        },{
+            sender:otherUserId,
+            reciever:req.user._id
+        }]
+    }).sort({createdAt:1})
+
+res.status(200).json({
+    success:true,
+    messages
+})
+})
