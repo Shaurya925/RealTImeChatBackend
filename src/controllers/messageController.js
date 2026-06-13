@@ -1,4 +1,5 @@
 import messageModel from "../models/messageModel.js";
+import { getIO } from "../sockets/socket.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 export const sendMessageController = asyncHandler(async (req,res) => {
@@ -16,6 +17,9 @@ export const sendMessageController = asyncHandler(async (req,res) => {
             message
         });
 
+
+//Sending to socket.io
+        getIO().to(reciever).emit("Message Recieved",message)
 
         res.status(201).json({
             success: true,

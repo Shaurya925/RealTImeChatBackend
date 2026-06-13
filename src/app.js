@@ -4,7 +4,6 @@ import cors from 'cors'
 import authRouter from "./routes/authRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
 
-
 const app = express()
 
 
